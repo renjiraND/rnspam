@@ -9,8 +9,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
-	<body>	
-		<div class="sidenav">	
+	<body>
+		<div class="sidenav">
 			<form method="post">
 				<label class="w3-text-white"><b>Input Query</b></label>
 				<input class="w3-input w3-animate-input w3-border-0 input" autocomplete="off" name="Konteks" type="text" placeholder="insert query here">
@@ -31,7 +31,7 @@
 					$text = $data['tweets'];
 					$i = 0;
 					while($i < sizeof($text)):
-						if  ($text[$i]['spamidx']=='-1') {
+						if  (($text[$i]['spamidx']=='-1') or ($text[$i]['spamidx']==[])) {
 							echo "<header class=\"w3-container w3-green\"><h6>Not a spam</h6></header>";
 							echo "<br>";
 						}else{
@@ -49,8 +49,14 @@
 </html>
 <?php
     if (isset($_POST['KMPButton']))
-    {	
-		exec("python twitter.py ".$_POST['Konteks'] , $output);
+    {
+		exec("python twitter.py -kmp \"".$_POST['Konteks']."\"" , $output);
+		header("Refresh:0");
+    }
+
+		if (isset($_POST['BMButton']))
+    {
+		exec("python twitter.py -bm \"".$_POST['Konteks']."\"" , $output);
 		header("Refresh:0");
     }
 ?>
