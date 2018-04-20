@@ -38,13 +38,3 @@ def computeFail(pattern):
 			fail[i] = 0
 			i+=1
 	return fail
-
-print("enter text:")
-text = input()
-pattern = "download this app"
-
-pos = kmp(text,pattern)
-if(pos == -1):
-	print("pattern not found")
-else:
-	print("pattern found at " + str(pos))

@@ -1,3 +1,4 @@
+import kmp
 import tweepy,json,requests
 import sys
 
@@ -7,19 +8,21 @@ url = 'http://localhost/stima/Tubz%20Steema/test.php'
 api = tweepy.API(auth)
 
 if __name__ == "__main__":
-	searchKey = ""
-	for i in range(1,len(sys.argv)):
-		if (i>1) :
-			searchKey += " "
-		searchKey += sys.argv[i]
-	
-	query = api.search(q=searchKey, count=500)
-	
+	searchKey = sys.argv[1]
+
+	query = api.search(q=searchKey, count=100)
+
+	tweet = []
+
+	for tweetapi in query:
+		tweet.append(tweetapi.text)
+
 	data = {}
-	data['text'] = []
+	data['tweets'] = []
 
-	for tweet in query:
-		data['text'].append({'test':tweet.text})
+	for isi in tweet :
+		spamidx=kmp.kmp(isi, "nasi goreng")
+		data['tweets'].append({'tweet':isi, 'spamidx':spamidx})
 
-	with open('data.txt',  "w+") as outfile:  
+	with open('data.txt',  "w+") as outfile:
 		json.dump(data, outfile)
