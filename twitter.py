@@ -1,6 +1,6 @@
 import kmp
 import boyer_moore
-import bmusang
+import regex
 import tweepy,json,requests
 import sys
 
@@ -10,7 +10,7 @@ url = 'http://localhost/stima/Tubz%20Steema/test.php'
 api = tweepy.API(auth)
 
 if __name__ == "__main__":
-	searchKey = sys.argv[2]
+	searchKey = sys.argv[2].lower()
 
 	query = api.search(q=searchKey, count=100)
 
@@ -23,15 +23,17 @@ if __name__ == "__main__":
 	data['tweets'] = []
 
 	if (sys.argv[1]=='-kmp'):
-		print("hehe")
 		for isi in tweet :
-			spamidx=kmp.kmp(isi, argv[3])
+			spamidx=kmp.kmp(isi.lower(), sys.argv[3])
 			data['tweets'].append({'tweet':isi, 'spamidx':spamidx})
 	elif (sys.argv[1]=='-bm'):
-		print("hoho")
 		for isi in tweet :
-			spamidx=bmusang.bm_match(isi, argv[3])
+			spamidx=boyer_moore.bmMatch(isi.lower(), sys.argv[3])
+			data['tweets'].append({'tweet':isi, 'spamidx':spamidx})
+	elif (sys.argv[1]=='-re'):
+		for isi in tweet :
+			spamidx=regex.regexMatch(isi.lower(), sys.argv[3])
 			data['tweets'].append({'tweet':isi, 'spamidx':spamidx})
 
-	with open('data.txt',  "w+") as outfile:
+	with open('data.txt',  "w") as outfile:
 		json.dump(data, outfile)

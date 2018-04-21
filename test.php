@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <<?php error_reporting(0); ?>
+<?php
+if (isset($_POST['KMPButton']))
+{
+	exec("python twitter.py -kmp \"".$_POST['Konteks']."\" \"".$_POST['Pattern']."\"" , $output);
+}
+
+if (isset($_POST['BMButton']))
+{
+	exec("python twitter.py -bm \"".$_POST['Konteks']."\" \"".$_POST['Pattern']."\"", $output);
+}
+
+if (isset($_POST['RegexButton']))
+{
+	exec("python twitter.py -re \"".$_POST['Konteks']."\" \"".$_POST['Pattern']."\"", $output);
+}
+?>
 <html>
 	<head>
 		<title>SpamDetectorApp - TubzSteema</title>
@@ -53,16 +69,3 @@
 		</div>
 	</body>
 </html>
-<?php
-    if (isset($_POST['KMPButton']))
-    {
-		exec("python twitter.py -kmp \"".$_POST['Konteks']."\" \"".$_POST['Pattern']."\"" , $output);
-		header("Refresh:0");
-    }
-
-	if (isset($_POST['BMButton']))
-    {
-		exec("python twitter.py -bm \"".$_POST['Konteks']."\" \"".$_POST['Pattern']."\"", $output);
-		header("Refresh:0");
-    }
-?>

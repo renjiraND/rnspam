@@ -1,5 +1,5 @@
 def bmMatch(text, pattern) :
-    last = buildLast(pattern)
+    last = buildLast(text,pattern)
     n = len(text)
     m = len(pattern)
     i = m-1
@@ -14,7 +14,7 @@ def bmMatch(text, pattern) :
             i -= 1
             j -= 1
     else :
-        lo = last[ord(text[i])]
+        lo = last[text[i]]
         i = i+m- min(j, 1+lo)
         j = m-1
     while (i <= n-1) :
@@ -25,13 +25,16 @@ def bmMatch(text, pattern) :
                 i -= 1
                 j -= 1
         else :
-            lo = last[ord(text[i])]
+            lo = last[text[i]]
             i = i+m- min(j, 1+lo)
             j = m-1
     return -1
 
-def buildLast(pattern) :
-    last = [-1 for x in range (16777216)]
+def buildLast(text, pattern) :
+    last = {}
+    for i in range(len(text)):
+        last[text[i]] = -1;
+
     for i in range(len(pattern)) :
-        last[ord(pattern[i])] = i
+        last[pattern[i]] = i
     return last
