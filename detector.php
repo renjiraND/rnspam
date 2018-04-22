@@ -39,23 +39,21 @@ if (isset($_POST['RegexButton']))
 				<button class="button" name="BMButton">Booyer-Moore</button>
 				<button class="button" name="RegexButton">Regular Expression</button>
 			</form>
-			<br><br><br><br><br><br>
-			<a style="width:100%" class="w3-button w3-text-white" name="AboutButton" href="about.html">About</a>
+			<a style="width:100%" class="w3-button w3-text-white w3-display-bottomleft" name="AboutButton" href="about.html">About</a>
 		</div>
 
 		<div class="content">
 			<div class="sticky">Spam Detector App</div>
 			<br>
-			<div class="w3-container">	
-				<br>
+			<div class="w3-container">
 				<?php
 					if (file_exists("data.txt")) {
 						$data = json_decode(file_get_contents("data.txt"), true);
 						$text = $data['tweets'];
 						$query = $data['query'];
 						$pattern = $data['pattern'];
-						echo "<div class=\"sticky\">query : ", $query, "</div>";
-						echo "<div class=\"sticky\">pattern : ", $pattern, "</div>";
+						echo "<div class=\"stcky\">query : ", $query, "</div>";
+						echo "<div class=\"stcky\">pattern : ", $pattern, "</div>";
 						$i = 0;
 						while($i < sizeof($text)):
 							echo "<br><div class=\"w3-card-4\">";

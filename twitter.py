@@ -20,6 +20,8 @@ if __name__ == "__main__":
 		tweet.append(tweetapi.text)
 
 	data = {}
+	data['query'] = sys.argv[2]
+	data['pattern'] = sys.argv[3]
 	data['tweets'] = []
 
 	if (sys.argv[1]=='-kmp'):

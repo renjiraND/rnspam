@@ -1,24 +1,34 @@
 <?php
-	/*** set the content type header ***/
-	header("Content-type: text/css");
-	$font_family = 'Arial, Helvetica, Allerta Stencil, sans-serif';
-	$font_size = '0.7em';
-	$border = '1px solid';
+    /*** set the content type header ***/
+    header("Content-type: text/css");
+    $font_family = 'Arial, Helvetica, Allerta Stencil, sans-serif';
+    $font_size = '0.7em';
+    $border = '1px solid';
 ?>
 
-.content h1 {
+div.sticky {
     background-color : black;
     color: white;
     text-align: right;
-    padding : 10px;
-    margin-top : -5px;
-    margin-left: -10px; 
-	font-family : Allerta Stencil;
-    font-size : 60px;
+    font-family : Allerta Stencil;
+    font-size : 65px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+div.stcky {
+    background-color : transparent;
+    color: black;
+    text-align: left;
+    font-family : Allerta Stencil;
+    position: -webkit-sticky;
+    position: relative;
+    font-size: 30px;   
 }
 
 .content .w3-card-4 .tweet {
-    font-family: Verdana;
+    font-family: Allerta Stencil;
 }
 
 .button {
@@ -51,7 +61,7 @@ body {
 /* Style the side navigation */
 .sidenav {
     height: 100%;
-    width: 210px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -65,7 +75,7 @@ body {
     color: white;
     padding: 16px;
     margin: 3px;
-	width: 200px;
+    width: 180px;
     display: block;
 }
 
@@ -80,6 +90,9 @@ body {
     border: transparent; 
 }
 
+.sidenav input:focus {
+    outline: none;
+}
 
 /* Change color on hover */
 .sidenav a:hover {
